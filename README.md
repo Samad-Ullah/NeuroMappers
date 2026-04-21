@@ -36,16 +36,6 @@ The main objective of this repository is to develop a reproducible pipeline for:
 
 ## Technical Workflow
 
-<p align="center">
-  <img src="assets/dbs_workflow_a4_spacious.png" alt="Initial Technical Workflow for DBS Electrode Localization" width="700">
-</p>
-
-<p align="center">
-  <em>Figure 1. Proposed native-space technical workflow for the DBS electrode localization project.</em>
-</p>
-
-## Technical Workflow
-
 The current implementation plan follows this workflow:
 
 1. **Data Loading and Inspection**
