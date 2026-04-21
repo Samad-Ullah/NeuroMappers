@@ -1,0 +1,22 @@
+# Core scientific stack
+numpy>=1.24
+scipy>=1.11
+pandas>=2.0
+matplotlib>=3.7
+
+# Medical image I/O and registration
+SimpleITK>=2.3
+nibabel>=5.1
+pydicom>=2.4
+
+# Image processing
+scikit-image>=0.22
+
+# Notebook environment
+jupyter>=1.0
+ipykernel>=6.25
+ipywidgets>=8.1
+
+# Utilities
+tqdm>=4.66
+PyYAML>=6.0

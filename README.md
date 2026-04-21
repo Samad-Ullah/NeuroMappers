@@ -96,3 +96,30 @@ NeuroMappers/
 ├── main.py
 ├── requirements.txt
 └── README.md
+```
+
+---
+
+## Setup
+
+Reproduce the development environment (tested with Python 3.12):
+
+**Windows (PowerShell or CMD)**
+
+```powershell
+python -m venv .venv
+.venv\Scripts\activate
+pip install -r requirements.txt
+python -m ipykernel install --user --name=neuromappers --display-name="Python (NeuroMappers)"
+```
+
+**macOS / Linux**
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m ipykernel install --user --name=neuromappers --display-name="Python (NeuroMappers)"
+```
+
+Open `notebooks/exploration.ipynb` in VSCode or Jupyter Lab and select the **Python (NeuroMappers)** kernel.
