@@ -8,6 +8,7 @@ matplotlib>=3.7
 SimpleITK>=2.3
 nibabel>=5.1
 pydicom>=2.4
+antspyx>=0.4
 
 # Image processing
 scikit-image>=0.22
