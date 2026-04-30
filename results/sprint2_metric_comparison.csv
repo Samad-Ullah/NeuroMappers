@@ -1,0 +1,10 @@
+label,metric,bins,sampling,sampling_pct,learning_rate,iterations,interpolator,final_metric_value,mattes_mi_final,runtime_s,visual_alignment_ok,flag,subject_id
+mattes_bins32,mattes,32,RANDOM,0.3,1.0,100,Linear,-0.330963,-0.093132,24.85,,ok,15454
+mattes_bins50,mattes,50,RANDOM,0.3,1.0,100,Linear,-0.34712,-0.093893,29.39,,ok,15454
+mattes_bins64,mattes,64,RANDOM,0.3,1.0,100,Linear,-0.362598,-0.094681,24.42,,ok,15454
+mattes_regular,mattes,50,REGULAR,0.3,1.0,100,Linear,-0.34251,-0.092435,13.27,,ok,15454
+mattes_lr0p5,mattes,50,RANDOM,0.3,0.5,100,Linear,-0.346739,-0.093791,29.52,,ok,15454
+mattes_iter200,mattes,50,RANDOM,0.3,1.0,200,Linear,-0.379504,-0.100665,37.23,,ok,15454
+mattes_bspline,mattes,50,RANDOM,0.3,1.0,100,BSpline,-0.321058,-0.092178,79.06,,ok,15454
+joint_hist_50,joint_histogram,50,RANDOM,0.3,1.0,100,Linear,-1.511883,-0.028829,11.65,,ok,15454
+correlation_neg,correlation,,RANDOM,0.3,1.0,100,Linear,-0.277897,-0.075324,82.74,,ok,15454
