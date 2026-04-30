@@ -30,6 +30,18 @@ DEFAULT_METRIC: str = "mattes"          # Mattes mutual information
 DEFAULT_FIXED: str = "T1w"
 DEFAULT_MOVING: str = "CT"
 
+# Sprint 2 Task 3 — defaults validated by results/sprint2_metric_comparison.csv
+# on sub-15454. The SimpleITK knobs (learning rate, registration-time
+# interpolator, RANDOM/REGULAR sampling) do not have direct ANTs equivalents
+# and so are not transferred here; ANTs uses its own optimizer machinery with
+# RANDOM sampling internally.
+DEFAULT_BINS: int = 50                  # numberOfHistogramBins -> aff_sampling
+DEFAULT_SAMPLING_RATE: float = 0.30     # SamplingPercentage  -> aff_random_sampling_rate
+# Sweep showed iter=200 at the final pyramid level beat iter=100 by ~8% on the
+# Mattes-MI yardstick and ran faster (early convergence). We give the final
+# level 200 iters; coarser levels keep the standard ANTs Rigid budget.
+DEFAULT_ITERATIONS: tuple[int, ...] = (2100, 1200, 200, 0)
+
 
 # ---------------------------------------------------------------------------
 # data class
@@ -100,6 +112,9 @@ def register_subject(
     moving_modality: str = DEFAULT_MOVING,
     transform_type: str = DEFAULT_TRANSFORM_TYPE,
     metric: str = DEFAULT_METRIC,
+    bins: int = DEFAULT_BINS,
+    sampling_rate: float = DEFAULT_SAMPLING_RATE,
+    iterations: tuple[int, ...] = DEFAULT_ITERATIONS,
     processed_root: Path = PROCESSED_DIR,
 ) -> RegistrationResult | None:
     """Rigid-register `moving` onto `fixed` and save the warped image + transform."""
@@ -129,6 +144,9 @@ def register_subject(
             moving=moving,
             type_of_transform=transform_type,
             aff_metric=metric,
+            aff_sampling=bins,
+            aff_random_sampling_rate=sampling_rate,
+            aff_iterations=iterations,
         )
         warped = reg["warpedmovout"]
         ants.image_write(warped, str(warped_path))
@@ -178,6 +196,9 @@ def register_all(
     moving_modality: str = DEFAULT_MOVING,
     transform_type: str = DEFAULT_TRANSFORM_TYPE,
     metric: str = DEFAULT_METRIC,
+    bins: int = DEFAULT_BINS,
+    sampling_rate: float = DEFAULT_SAMPLING_RATE,
+    iterations: tuple[int, ...] = DEFAULT_ITERATIONS,
     processed_root: Path = PROCESSED_DIR,
     log_csv: Path = REGISTRATION_LOG_CSV,
 ) -> pd.DataFrame:
@@ -185,7 +206,8 @@ def register_all(
     rows: list[RegistrationResult] = []
     for sid in subject_ids:
         result = register_subject(
-            sid, fixed_modality, moving_modality, transform_type, metric, processed_root,
+            sid, fixed_modality, moving_modality, transform_type, metric,
+            bins, sampling_rate, iterations, processed_root,
         )
         if result is not None:
             rows.append(result)
