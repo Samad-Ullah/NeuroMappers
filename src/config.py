@@ -20,4 +20,9 @@ PATIENT_IDS: tuple[str, ...] = (
     "76325", "78754", "80206", "84257", "93127",
 )
 
+# Demonstrated cohort for Sprint 2+: sub-39468 is excluded by team agreement
+# (post-op CT has ~21% NaN voxels, flagged as a data-quality issue separately).
+# Code still runs on PATIENT_IDS for completeness; figures and metrics use VALID_IDS.
+VALID_IDS: tuple[str, ...] = tuple(pid for pid in PATIENT_IDS if pid != "39468")
+
 NIFTI_EXTENSIONS: tuple[str, ...] = (".nii", ".nii.gz")
